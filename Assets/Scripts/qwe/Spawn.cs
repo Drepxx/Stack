@@ -8,26 +8,12 @@ public class Spawn : MonoBehaviour
     public GameObject[] spawns = new GameObject[2];
     public GameObject colorGenerator;
     public int count;
-    public bool start;
     public bool spawn;
     private void Awake()
     {
         instance = this;
         spawn = false;
         count = 0;
-    }
-    void Start()
-    {
-        start = false;
-    }
-
-    void Update()
-    {
-        if (start)
-        {
-           // Spawner();
-            start = false;
-        }
     }
     public void SpawnPosition()
     {
@@ -47,8 +33,11 @@ public class Spawn : MonoBehaviour
                 GameManager2.instance.upperPlate.GetComponent<MeshRenderer>().material.color = GameManager2.instance.colors[GameManager2.instance.colorCount];
                 count = 1;
                 Debug.Log("spawn0");
-                Debug.Log("2");
-            }
+                Debug.Log("SpawnifGirdim");
+                
+               
+                   
+                }
             else
             {
                 GameManager2.instance.upperPlate = Instantiate(GameManager2.instance.lowerPlate, spawns[1].transform.position, GameManager2.instance.lowerPlate.transform.rotation);
@@ -57,7 +46,14 @@ public class Spawn : MonoBehaviour
                 GameManager2.instance.upperPlate.GetComponent<MeshRenderer>().material.color = GameManager2.instance.colors[GameManager2.instance.colorCount];
                 count = 0;
                 Debug.Log("spawn1");
-                Debug.Log("2");
+                Debug.Log("SpawnElseGirdim");
+                /*GameManager2.instance.lowerPlate = GameManager2.instance.part1;
+                GameManager2.instance.distance = GameManager2.instance.upperPlate.transform.position.x - GameManager2.instance.lowerPlate.transform.position.x;
+                if (GameManager2.instance.lowerPlate.transform.localScale.x < Mathf.Abs(GameManager2.instance.distance))
+                {
+                    Destroy(GameManager2.instance.upperPlate);
+                    Debug.Log("aaaaaaaaaaaaaaaa");
+                }*/
             }
         }
     }
