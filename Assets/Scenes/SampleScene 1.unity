@@ -1301,7 +1301,6 @@ MonoBehaviour:
   - {fileID: 953069743}
   colorGenerator: {fileID: 828502164}
   count: 0
-  start: 0
   spawn: 0
 --- !u!4 &1359843484
 Transform:
@@ -1602,7 +1601,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
+    rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -2168,7 +2167,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highScore: {fileID: 1570855403}
   scoreCanvas: {fileID: 1829921681}
-  a: 0
 --- !u!1 &1829921681
 GameObject:
   m_ObjectHideFlags: 0

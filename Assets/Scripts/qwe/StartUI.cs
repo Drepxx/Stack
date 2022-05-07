@@ -22,7 +22,6 @@ public class StartUI : MonoBehaviour
             if (i == gameObject.transform.childCount - 1)
             {
                 gameObject.transform.GetChild(i).transform.DOScale(0, 0.5f).OnComplete(() => { gameObject.SetActive(false); });
-                
             }
             else
             {

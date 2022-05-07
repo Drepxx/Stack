@@ -8,7 +8,6 @@ public class GameManager2 : MonoBehaviour
 {
     public Color[] colors = new Color[24];
     public static GameManager2 instance;
-    public static UnityEvent Stack = new UnityEvent();
     public GameObject upperPlate;
     public GameObject lowerPlate;
     public GameObject part1;
@@ -31,43 +30,26 @@ public class GameManager2 : MonoBehaviour
         score = 0;
         colorCount = 0;
     }
-    
+
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A)&&isStart!=false)
+        if (Input.touchCount > 0)
         {
-
-            //Stack.Invoke();
-            Kill();
-            Distance();
-            Split();
-            Score();
-            Spawn.instance.SpawnPosition();
-            Spawn.instance.Spawner();
-            CameraMove.instance.Camera();
+            Touch touch = Input.GetTouch(0);
+            if (touch.phase == TouchPhase.Began && isStart != false)
+            {
+                Kill();
+                Distance();
+                Split();
+                Score();
+                Spawn.instance.SpawnPosition();
+                Spawn.instance.Spawner();
+                CameraMove.instance.Camera();
+            }
         }
 
     }
-    /*private void OnEnable()
-    {
-        Stack.AddListener(Kill);
-        Stack.AddListener(Distance);
-        Stack.AddListener(Split);
-        Stack.AddListener(Score);
-        Stack.AddListener(Spawn.instance.SpawnPosition);
-        Stack.AddListener(Spawn.instance.Spawner);
-        Stack.AddListener(CameraMove.instance.Camera);
-    }
-    private void OnDisable()
-    {
-        Stack.RemoveListener(Kill);
-        Stack.RemoveListener(Distance);
-        Stack.RemoveListener(Split);
-        Stack.RemoveListener(Score);
-        Stack.RemoveListener(Spawn.instance.SpawnPosition);
-        Stack.RemoveListener(Spawn.instance.Spawner);
-        Stack.RemoveListener(CameraMove.instance.Camera);
-    }*/
+
     public void Kill()
     {
         DOTween.KillAll(gameObject);
@@ -76,7 +58,7 @@ public class GameManager2 : MonoBehaviour
     public void Distance()
     {
 
-        if (upperPlate.name=="1")
+        if (upperPlate.name == "1")
         {
             lowerPlate = part1;
             distance = upperPlate.transform.position.x - lowerPlate.transform.position.x;
@@ -85,13 +67,12 @@ public class GameManager2 : MonoBehaviour
         {
             lowerPlate = part1;
             distance = upperPlate.transform.position.z - lowerPlate.transform.position.z;
-            Debug.Log(distance);
         }
 
     }
     public void Split()
     {
-        if (upperPlate.name=="0")
+        if (upperPlate.name == "0")
         {
             if (Mathf.Abs(distance) < 1f)
             {
@@ -105,7 +86,6 @@ public class GameManager2 : MonoBehaviour
             {
                 if (lowerPlate.transform.localScale.z < Mathf.Abs(distance))
                 {
-                    Debug.Log("SplitGameOverZGirdim");
                     isGameOver = true;
                     gameOver.SetActive(true);
                     upperPlate.AddComponent<Rigidbody>();
@@ -119,7 +99,6 @@ public class GameManager2 : MonoBehaviour
                         part2 = Instantiate(lowerPlate, upperPlate.transform.position - new Vector3(0, 0, distance / 2) + new Vector3(0, 0, upperPlate.transform.localScale.z / 2), Quaternion.identity);
                         part2.transform.localScale = new Vector3(part2.transform.localScale.x, part2.transform.localScale.y, distance);
                         AfterSplit();
-                        Debug.Log("distance>0");
                     }
                     else
                     {
@@ -128,7 +107,6 @@ public class GameManager2 : MonoBehaviour
                         part2 = Instantiate(lowerPlate, upperPlate.transform.position - new Vector3(0, 0, distance / 2) - new Vector3(0, 0, upperPlate.transform.localScale.z / 2), Quaternion.identity);
                         part2.transform.localScale = new Vector3(part2.transform.localScale.x, part2.transform.localScale.y, distance);
                         AfterSplit();
-                        Debug.Log("distance<0");
                     }
                 }
             }
@@ -148,7 +126,6 @@ public class GameManager2 : MonoBehaviour
             {
                 if (lowerPlate.transform.localScale.x < Mathf.Abs(distance))
                 {
-                    Debug.Log("SplitGameOverXGirdim");
                     isGameOver = true;
                     gameOver.SetActive(true);
                     upperPlate.AddComponent<Rigidbody>();

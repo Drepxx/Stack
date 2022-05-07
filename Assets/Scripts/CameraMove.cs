@@ -10,7 +10,6 @@ public class CameraMove : MonoBehaviour
     private void Awake()
     {
         instance = this;
- 
     }
     private void Start()
     {
@@ -24,6 +23,5 @@ public class CameraMove : MonoBehaviour
     public void Camera()
     {
         desiredPosition = transform.position + new Vector3(0f, 1f, 0f);
-
     }
 }

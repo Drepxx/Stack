@@ -24,7 +24,6 @@ public class Spawn : MonoBehaviour
     {
         if (GameManager2.instance.isGameOver ==false)
         {
-                //Debug.Log(GameManager2.instance.isGameOver);
             if (count == 0)
             {
                 GameManager2.instance.upperPlate = Instantiate(GameManager2.instance.lowerPlate, spawns[0].transform.position, GameManager2.instance.lowerPlate.transform.rotation);
@@ -32,11 +31,6 @@ public class Spawn : MonoBehaviour
                 GameManager2.instance.upperPlate.name = ("0");
                 GameManager2.instance.upperPlate.GetComponent<MeshRenderer>().material.color = GameManager2.instance.colors[GameManager2.instance.colorCount];
                 count = 1;
-                Debug.Log("spawn0");
-                Debug.Log("SpawnifGirdim");
-                
-               
-                   
                 }
             else
             {
@@ -45,15 +39,6 @@ public class Spawn : MonoBehaviour
                 GameManager2.instance.upperPlate.name = ("1");
                 GameManager2.instance.upperPlate.GetComponent<MeshRenderer>().material.color = GameManager2.instance.colors[GameManager2.instance.colorCount];
                 count = 0;
-                Debug.Log("spawn1");
-                Debug.Log("SpawnElseGirdim");
-                /*GameManager2.instance.lowerPlate = GameManager2.instance.part1;
-                GameManager2.instance.distance = GameManager2.instance.upperPlate.transform.position.x - GameManager2.instance.lowerPlate.transform.position.x;
-                if (GameManager2.instance.lowerPlate.transform.localScale.x < Mathf.Abs(GameManager2.instance.distance))
-                {
-                    Destroy(GameManager2.instance.upperPlate);
-                    Debug.Log("aaaaaaaaaaaaaaaa");
-                }*/
             }
         }
     }
